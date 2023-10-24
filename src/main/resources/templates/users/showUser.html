@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h3>Personal info</h3>
+<p th:text="${user.getName() + ', ' + user.getSurname() + ', ' + user.getPatronymic()}">Info</p>
+<p th:text="${'Age: ' + user.getAge()}">Age</p>
+<p th:text="${'Current status: ' + user.getUserStatus()}">Status</p>
+<p th:text="${'Hometown :' + user.getHometown()}">Hometown</p>
+
+<div th:if="${missions.isEmpty()}">
+    <hr/>
+    <p>Take part in any mission, good luck!</p>
+    <hr/>
+</div>
+
+<div th:if="${!missions.isEmpty()}">
+    <hr/>
+    <b>Missions:</b>
+    <br/>
+    <table th:each="mission : ${missions}">
+        <a th:href="@{/posts/{id}(id=${mission.getId()})}" th:text="${mission.getLostPersonName() + ', ' + mission.getLostPersonSurname() + ', ' + mission.getWhereGotLost()}">mission</a>
+    </table>
+    <hr/>
+</div>
+
+<form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/users/{id}/delete(id=${user.getId()})}">
+    <input type="submit" value="Delete" />
+</form>
+
+</body>
+</html>

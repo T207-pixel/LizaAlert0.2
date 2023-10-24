@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show post</title>
+</head>
+<body>
+
+<b>Info about lost person</b>
+<p th:text="${'Lost person name: ' + post.getLostPersonName()}">name</p>
+<p th:text="${'Lost person surname: ' + post.getLostPersonSurname()}">surname</p>
+<p th:text="${'Lost person age: ' + post.getLostPersonAge()}">age</p>
+<p th:text="${'Lost person special signs: ' + post.getLostPersonSpecialSigns()}">SpecialSigns</p>
+<p th:text="${'Where got lost: ' + post.getWhereGotLost()}">WhereGotLost</p>
+<p th:text="${'When got lost: ' + post.getWhenGotLost()}">WhenGotLost</p>
+<p th:text="${'Lost person clothing: ' + post.getLostPersonClothing()}">Outlook</p>
+
+<div th:if="${!post.isPostStatus()}">
+    <p>NOT FOUND</p>
+</div>
+
+<div th:if="${post.isPostStatus()}">
+    <p>FOUND</p>
+</div>
+
+<div th:if="${!users.isEmpty()}">
+    <hr/>
+    <p>Already joined</p>
+    <table th:each="user : ${users}">
+        <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName() + ', ' + user.getSurname() + ', ' + user.getPatronymic()}">Users</a>
+    </table>
+    <hr/>
+    <a th:text="${'Current quantity: ' + users.size()}">List size</a>
+    <hr/>
+</div>
+
+<div th:if="${allUsers}">
+    <span>Choose volunteers?</span>
+    <form th:method="PATCH" th:action="@{/posts/{id}/assign(id=${post.getId()})}">
+        <label for="user">Chose person</label>
+        <select th:object="${user}" th:field="*{id}" id="user">
+            <option th:each="user : ${allUsers}" th:value="${user.getId()}" th:text="${user.getName()}">
+            </option>
+        </select>
+        <input type="submit" value="Assign"/>
+    </form>
+</div>
+
+</body>
+</html>

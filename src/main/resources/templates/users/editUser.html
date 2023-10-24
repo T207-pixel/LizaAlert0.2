@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/users/{id}/edit(id=${user.id})}" th:object="${user}">
+
+    <label for="name">Enter name</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}">
+        <p th:errors="*{name}">Name Error</p>
+    </div>
+    <br/>
+
+    <label for="surname">Enter surname</label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}">
+        <p th:errors="*{surname}">surname Error</p>
+    </div>
+    <br/>
+
+    <label for="patronymic">Enter patronymic</label>
+    <input type="text" th:field="*{patronymic}" id="patronymic"/>
+    <div style="color:red" th:if="${#fields.hasErrors('patronymic')}">
+        <p th:errors="*{patronymic}">patronymic Error</p>
+    </div>
+    <br/>
+
+    <label for="hometown">Enter hometown</label>
+    <input type="text" th:field="*{hometown}" id="hometown"/>
+    <div style="color:red" th:if="${#fields.hasErrors('hometown')}">
+        <p th:errors="*{hometown}">hometown Error</p>
+    </div>
+    <br/>
+
+    <label for="age">Enter age</label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color:red" th:if="${#fields.hasErrors('age')}">
+        <p th:errors="*{age}">age Error</p>
+    </div>
+    <br/>
+
+    <input type="submit" value="Edit!"/>
+
+</form>
+
+</body>
+</html>

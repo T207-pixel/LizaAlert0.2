@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New Post</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/posts/newPost}" th:object="${post}">   <!--th:action -> то на какой url отправится данная форма (заполненная модель)-->
+
+    <label for="lostPersonSurname">Enter lost person surname</label>
+    <input type="text" th:field="*{lostPersonSurname}" id="lostPersonSurname"/> <!-- В качестве id указываем поле объекта, которое будем заполнять -->
+    <div style="color:red" th:if="${#fields.hasErrors('lostPersonSurname')}">
+        <p th:errors="*{lostPersonSurname}">Name Error</p>
+    </div>
+    <br/>
+
+    <label for="lostPersonName">Enter lost person name</label>
+    <input type="text" th:field="*{lostPersonName}" id="lostPersonName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lostPersonName')}">
+        <p th:errors="*{lostPersonName}">Year Error</p>
+    </div>
+    <br/>
+
+    <label for="lostPersonAge">Enter lost person age</label>
+    <input type="text" th:field="*{lostPersonAge}" id="lostPersonAge"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lostPersonAge')}">
+        <p th:errors="*{lostPersonAge}">Year Error</p>
+    </div>
+    <br/>
+
+    <label for="lostPersonSpecialSigns">Enter lost person special signs</label>
+    <input type="text" th:field="*{lostPersonSpecialSigns}" id="lostPersonSpecialSigns"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lostPersonSpecialSigns')}">
+        <p th:errors="*{lostPersonSpecialSigns}">Year Error</p>
+    </div>
+    <br/>
+
+    <label for="whereGotLost">Enter place of disappearance</label>
+    <input type="text" th:field="*{whereGotLost}" id="whereGotLost"/>
+    <div style="color:red" th:if="${#fields.hasErrors('whereGotLost')}">
+        <p th:errors="*{whereGotLost}">Year Error</p>
+    </div>
+    <br/>
+
+    <label for="whenGotLost">Enter date of disappearance</label>
+    <input type="text" th:field="*{whenGotLost}" id="whenGotLost"/>
+    <div style="color:red" th:if="${#fields.hasErrors('whenGotLost')}">
+        <p th:errors="*{whenGotLost}">Year Error</p>
+    </div>
+    <br/>
+
+    <label for="lostPersonClothing">Describe lost person clothing</label>
+    <input type="text" th:field="*{lostPersonClothing}" id="lostPersonClothing"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lostPersonClothing')}">
+        <p th:errors="*{lostPersonClothing}">Year Error</p>
+    </div>
+    <br/>
+
+    <input type="submit" value="Create!"/>
+
+</form>
+
+</body>
+</html>

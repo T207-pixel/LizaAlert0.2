@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All posts</title>
+</head>
+<body>
+
+<h3>All posts</h3>
+
+<div th:each="post : ${postsList}">
+    <a th:href="@{/posts/{id}(id=${post.getId()})}" th:text="${post.getLostPersonName() + ', ' +
+     post.getLostPersonSurname() + ', ' + post.getLostPersonAge() + ' (' + post.getWhereGotLost() + ')'}">user</a>
+    <br/>
+</div>
+
+<form th:method="GET" th:action="@{/posts/newPost}">
+    <input type="submit" value="Add post"/>
+</form>
+
+</body>
+</html>
